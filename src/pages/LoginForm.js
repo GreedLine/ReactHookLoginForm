@@ -1,4 +1,5 @@
 import {useForm} from "react-hook-form";
+import React from 'react';
 
 // Components
 import {InputField} from "../components/InputField";
@@ -9,16 +10,15 @@ function LoginForm() {
     });
     const onSubmit = data => console.log(data);
 
-
     return (
-        <form action="" id="login-form" onSubmit={handleSubmit(onSubmit)}>
-            <h1>Sign In</h1>
-
+        <form className='login-form' onSubmit={handleSubmit(onSubmit)}>
+            <h1 className='login-form__title'>Sign In</h1>
             <InputField
                 label='Login'
                 type='text'
                 name='login'
-                refData={register({
+                ref={
+                    register({
                     required: true, pattern: {
                         value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                         message: "Invalid email address."
@@ -31,7 +31,7 @@ function LoginForm() {
                 label='Password'
                 type='password'
                 name='password'
-                refData={register({
+                ref={register({
                     required: true,
                     maxLength: {value: 60, message: 'Password length must not exceed 60 characters.'},
                     minLength: {value: 10, message: 'Password length must not be less than 10 characters.'}
