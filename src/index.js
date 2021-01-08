@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import './components/style.scss';
+// TODO: Поработать над БЭМ.
+
+// TODO: Подключить normalize.css
+import './components/InputField/style.scss';
 import LoginForm from './pages/LoginForm';
 import reportWebVitals from './reportWebVitals';
 
