@@ -1,16 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-// TODO: Поработать над БЭМ.
-
-// TODO: Подключить normalize.css
 import './components/InputField/style.scss';
-import LoginForm from './pages/LoginForm';
+import App from './pages/App';
 import reportWebVitals from './reportWebVitals';
+import 'normalize.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <LoginForm />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -4,15 +4,15 @@ import React from 'react';
 // Components
 import {InputField} from "../components/InputField";
 
-function LoginForm() {
+function SignIn() {
     const {register, handleSubmit, errors} = useForm({
         reValidateMode: 'onSubmit',
     });
     const onSubmit = data => console.log(data);
 
     return (
-        <form className='login-form' onSubmit={handleSubmit(onSubmit)}>
-            <h1 className='login-form__title'>Sign In</h1>
+        <form className='user-form' onSubmit={handleSubmit(onSubmit)}>
+            <h1 className='user-form__title'>Sign In</h1>
             <InputField
                 label='Login'
                 type='text'
@@ -40,12 +40,12 @@ function LoginForm() {
                 errorMessage={errors.password && errors.password.message}
             />
 
-            <input type="submit" className='login-form__input' id='login-form__submit'
+            <input type="submit" className='user-form__input user-form__input_type_submit'
             />
-            <a href="/">Can't Sign In?</a>
-            <a href="/">Create Account</a>
+            <a href="/" className='user-form__a'>Can't Sign In?</a>
+            <a href="/signup" className='user-form__a'>Don't have an account? Sign Up.</a>
         </form>
     );
 }
 
-export default LoginForm;
+export default SignIn;
