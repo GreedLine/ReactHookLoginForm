@@ -5,15 +5,15 @@ import React from 'react';
 export const InputField = React.forwardRef( ({label, type, name, errorMessage}, ref) => {
     const inputAndLabelId = uuidv4();
     return (
-        <div className='textb'>
-            <label htmlFor={inputAndLabelId} className='textb__placeholder'>{label}</label>
+        <div className='user-form__content'>
+            <label htmlFor={inputAndLabelId} className='login-form__placeholder'>{label}</label>
             <input type={type}
-                   className='textb__input'
+                   className='user-form__input'
                    id={inputAndLabelId}
                    name={name}
                    ref={ref}
             />
-            <span className='textb__error'>{errorMessage}</span>
+            <span className='user-form__error'>{errorMessage}</span>
         </div>
     )
 });
