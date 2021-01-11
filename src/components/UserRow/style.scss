@@ -1,0 +1,31 @@
+*{
+  box-sizing: border-box;
+}
+.parent-block{
+  width: 80%;
+}
+.user-list{
+  width: 100%;
+  color: #212529;
+  border-collapse: collapse;
+  border-spacing: 0;
+  &__head{
+    vertical-align: bottom;
+    background: #686de0;
+    color: #fff;
+  }
+  &__th, &__td{
+    text-align: left;
+  }
+  &__th{
+    padding: .75rem;
+    vertical-align: top;
+  }
+  &__tr,&__head{
+    border-bottom: 2px solid #dee2e6;
+  }
+  &__td{
+    padding: .75rem;
+    vertical-align: top;
+  }
+}
