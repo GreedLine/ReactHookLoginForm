@@ -16,12 +16,6 @@ const Home = () => (
     </div>
 )
 
-const About = () => (
-    <div>
-        <p>We are now on the ABOUT page</p>
-    </div>
-)
-
 const App = () => (
     <BrowserRouter>
         <Route path="/" exact component={Home}/>
