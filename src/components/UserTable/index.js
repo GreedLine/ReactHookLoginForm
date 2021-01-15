@@ -3,8 +3,7 @@ import UserRow from '../UserRow'
 import UserListControlButton from "../UserListControlButton";
 import store from '../../store/store'
 
-import {useDispatch} from 'react-redux';
-
+import {useDispatch, useSelector} from 'react-redux';
 
 export function UserTable() {
     const userList = [
@@ -53,9 +52,10 @@ export function UserTable() {
 
      */
 
+    // TODO: Реализовать через useState пагинацию.
+
     function nextPage(e) {
         console.log(e.target)
-
     }
 
     function checkLessThanThree(req) {
@@ -70,48 +70,35 @@ export function UserTable() {
         }
     }
 
-    // function SecondAddUser(props, index){
-    //     return {
-    //         type: 'ADD_USER',
-    //         id: index,
-    //         text: props.login
-    //     }
-    // }
+    function testAddUser(users){
+        console.log('Dispatch in work!')
+        console.log(store.getState())
+        return {
+            type: 'ADD_USER',
+            users
+        };
+    }
 
-    function AddUser() {
-        req.elements.map((item, index) => {
-            store.dispatch({
-                type: 'ADD_USER',
-                id: index,
-                text: item.login
-            })
-        })
-
-
-        // const dispatch = useDispatch();
-        //
-        // req.elements.map((item, index)=>{
-        //     dispatch(SecondAddUser(item, index));
-        // })
-        //
-        // req.elements.map((item, index)=>{
-        //     dispatch({
-        //         type: 'ADD_USER',
-        //         id: index,
-        //         text: item.login
-        //     });
-        // })
-
-
+    function checkState(){
         console.log(store.getState());
     }
+
+    const userData = useSelector(state => state.users);
+    const dispatch = useDispatch();
+
 
     return (
         <div className='parent-block'>
             <div className='user-list-control'>
 
                 {checkLessThanThree(req)}
-                <UserListControlButton char={1} handlerName={() => AddUser()}/>
+                <UserListControlButton char='Получить данные' handlerName={() =>
+                    dispatch(testAddUser(req.elements))
+                }/>
+                <UserListControlButton char='Check State' handlerName={() =>
+                    checkState()
+                }/>
+
             </div>
             <table className='user-list'>
                 <thead className='user-list__thead'>
@@ -124,15 +111,13 @@ export function UserTable() {
                 </tr>
                 </thead>
                 <tbody className='user-list__tbody'>
-                {userList.map(item =>
-                    <UserRow
-                        key={item.id}
-                        login={item.login}
-                        userName={item.userName}
-                        tenant={item.tenant}
-                        dateCreate={item.dateCreate}
-                        action={item.action}
-                    />
+                {userData.map(item =>
+                    <UserRow key={item.id}
+                             login={item.login}
+                             userName={item.userName}
+                             tenant={item.tenant}
+                             dateCreate={item.dateCreate}
+                             action={item.action} />
                 )}
                 </tbody>
             </table>

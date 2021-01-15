@@ -1,34 +1,20 @@
 import {createStore} from 'redux';
-import {TAKE_USER, PUT_USER} from './reducers/user'
 
 
 function userReducer(state, action) {
     switch (action.type) {
         case 'ADD_USER':
-            return [
-                ...state,
-                {
-                    user: {
-                        id: action.id,
-                        text: action.text
-                    }
-                }
-            ]
+            return {
+                users: action.users,
+                another: [...state.another]
+            }
         default:
             return state
     }
 }
 
-const initialTodos = []
+const initialStore = {users: [], another: []};
 
-const store = createStore(userReducer, initialTodos, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
-
-// Использование
-// store.dispatch({
-//     type: 'ADD_USER',
-//     id: 1,
-//     text: 'Понять насколько redux прост'
-// })
-
+const store = createStore(userReducer, initialStore, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
 export default store;
