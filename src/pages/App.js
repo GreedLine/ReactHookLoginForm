@@ -12,7 +12,7 @@ const history = createBrowserHistory();
 const Home = () => (
     <div>
         <ul>
-            <li><Link to="/index">Home</Link></li>
+            <li><Link to="/">Home</Link></li>
             <li><Link to="/signin">Sign In</Link></li>
             <li><Link to="/signup">Sign Up</Link></li>
             <li><Link to="/admin/user">Admin User</Link></li>
@@ -22,7 +22,7 @@ const Home = () => (
 
 const App = () => (
     <BrowserRouter>
-        <Route path="/index" exact component={Home}/>
+        <Route path="/" exact component={Home}/>
         <Route path="/signin" exact component={SignIn}/>
         <Route path="/signup" exact component={SignUp}/>
         <Route path="/admin/user" exact component={AdminPanel}/>

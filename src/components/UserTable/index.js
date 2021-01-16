@@ -1,8 +1,7 @@
 import React from 'react'
 import UserRow from '../UserRow'
-import UserListControlButton from "../UserListControlButton";
 import store from '../../store/store'
-
+import Pagination from "../Pagination";
 import {useDispatch, useSelector} from 'react-redux';
 
 export function UserTable() {
@@ -21,8 +20,8 @@ export function UserTable() {
     ]
     const req = {
         countItems: 11,
-        countPages: 3,
-        numberPage: 1,
+        countPages: 15,
+        currentPage: 6,
         elements: [
             {id: 1, login: 'greedline', userName: '-', tenant: '-', dateCreate: '-', action: "-"},
             {id: 2, login: 'progressiveart', userName: '-', tenant: '-', dateCreate: '-', action: "-"},
@@ -52,54 +51,48 @@ export function UserTable() {
 
      */
 
-    // TODO: Реализовать через useState пагинацию.
 
-    function nextPage(e) {
-        console.log(e.target)
-    }
-
-    function checkLessThanThree(req) {
-        if (req.numberPage < 4) {
-            return (
-                <div>
-                    <UserListControlButton char={1} handlerName={(e) => nextPage(e)}/>
-                    <UserListControlButton char={2} handlerName={(e) => nextPage(e)}/>
-                    <UserListControlButton char={3} handlerName={(e) => nextPage(e)}/>
-                </div>
-            )
-        }
-    }
-
-    function testAddUser(users){
+    function setDataUsers(users){
         console.log('Dispatch in work!')
         console.log(store.getState())
         return {
-            type: 'ADD_USER',
+            type: 'SET_DATA_USERS',
             users
         };
     }
 
-    function checkState(){
-        console.log(store.getState());
+    function setCurrentPage(currentPage){
+        return {
+            type: 'SET_CURRENT_PAGE',
+            currentPage
+        };
     }
 
-    const userData = useSelector(state => state.users);
+    function setCountPage(countPages){
+        return {
+            type: 'SET_COUNT_PAGE',
+            countPages
+        };
+    }
+
+    function imitationResponse(){
+        // Текущие данные на странице
+        dispatch(setDataUsers(req.elements))
+        // Кол-во страниц
+        dispatch(setCountPage(req.countPages))
+        // Текущая страница
+        dispatch(setCurrentPage(req.currentPage))
+
+
+    }
+
+    const dataUsers = useSelector(state => state.users);
     const dispatch = useDispatch();
 
 
     return (
         <div className='parent-block'>
-            <div className='user-list-control'>
 
-                {checkLessThanThree(req)}
-                <UserListControlButton char='Получить данные' handlerName={() =>
-                    dispatch(testAddUser(req.elements))
-                }/>
-                <UserListControlButton char='Check State' handlerName={() =>
-                    checkState()
-                }/>
-
-            </div>
             <table className='user-list'>
                 <thead className='user-list__thead'>
                 <tr className='user-list__head'>
@@ -111,7 +104,7 @@ export function UserTable() {
                 </tr>
                 </thead>
                 <tbody className='user-list__tbody'>
-                {userData.map(item =>
+                {dataUsers.map(item =>
                     <UserRow key={item.id}
                              login={item.login}
                              userName={item.userName}
@@ -121,6 +114,12 @@ export function UserTable() {
                 )}
                 </tbody>
             </table>
+            <div className='user-list-control'>
+
+                <Pagination />
+
+                <button onClick={() => imitationResponse()}>Занести данные</button>
+            </div>
         </div>
     )
 }

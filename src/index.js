@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import './components/InputField/style.scss';
 import './components/UserRow/style.scss';
+import './components/Pagination/style.scss';
 import App from './pages/App';
 import reportWebVitals from './reportWebVitals';
 import 'normalize.css';
