@@ -53,7 +53,6 @@ export function UserTable() {
 
 
     function setDataUsers(users){
-        console.log('Dispatch in work!')
         console.log(store.getState())
         return {
             type: 'SET_DATA_USERS',
@@ -70,7 +69,7 @@ export function UserTable() {
 
     function setCountPage(countPages){
         return {
-            type: 'SET_COUNT_PAGE',
+            type: 'SET_COUNT_PAGES',
             countPages
         };
     }
@@ -82,11 +81,9 @@ export function UserTable() {
         dispatch(setCountPage(req.countPages))
         // Текущая страница
         dispatch(setCurrentPage(req.currentPage))
-
-
     }
 
-    const dataUsers = useSelector(state => state.users);
+    const dataUsers = useSelector(state => state.dataUsers);
     const dispatch = useDispatch();
 
 
