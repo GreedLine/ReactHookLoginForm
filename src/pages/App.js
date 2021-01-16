@@ -1,9 +1,13 @@
 import React from 'react'
 import {BrowserRouter, Route, Link} from 'react-router-dom'
+import { createBrowserHistory } from "history";
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 import AdminPanel from './AdminPanel';
 
+const history = createBrowserHistory();
+
+// TODO: Разобраться с тем, почему он билдит только одну страницу. И то криво.
 
 const Home = () => (
     <div>
@@ -13,12 +17,6 @@ const Home = () => (
             <li><Link to="/signup">Sign Up</Link></li>
             <li><Link to="/admin/user">Admin User</Link></li>
         </ul>
-    </div>
-)
-
-const About = () => (
-    <div>
-        <p>We are now on the ABOUT page</p>
     </div>
 )
 
