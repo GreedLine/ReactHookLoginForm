@@ -4,7 +4,7 @@ import './index.css';
 import './components/InputField/style.scss';
 import './components/UserRow/style.scss';
 import './components/Pagination/style.scss';
-import App from './pages/App';
+import Navigation from './pages/Navigation';
 import reportWebVitals from './reportWebVitals';
 import 'normalize.css';
 import {BrowserRouter} from 'react-router-dom'
@@ -12,11 +12,10 @@ import {createBrowserHistory} from "history";
 
 const history = createBrowserHistory();
 
-
 render((
-  <BrowserRouter history={history}>
-    <App />
-  </BrowserRouter>
-    ), document.getElementById('root'));
+    <BrowserRouter history={history}>
+        <Navigation/>
+    </BrowserRouter>
+), document.getElementById('root'));
 
 reportWebVitals();
