@@ -88,8 +88,7 @@ export function UserTable() {
 
 
     return (
-        <div className='parent-block'>
-
+        <div>
             <table className='user-list'>
                 <thead className='user-list__thead'>
                 <tr className='user-list__head'>
