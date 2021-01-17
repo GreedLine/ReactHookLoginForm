@@ -53,7 +53,6 @@ export function UserTable() {
 
 
     function setDataUsers(users){
-        console.log(store.getState())
         return {
             type: 'SET_DATA_USERS',
             users

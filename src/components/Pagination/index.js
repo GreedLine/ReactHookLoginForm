@@ -37,7 +37,7 @@ export function Pagination() {
                 else panel.push(thisCurrentPage);
             }
         }
-        console.log(panel)
+
         dispatch(setPaginationPanel(panel))
     }
 
