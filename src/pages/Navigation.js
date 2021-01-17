@@ -18,7 +18,6 @@ const Data = () =>(
 
 const Navigation = () => (
     <div>
-
         <Switch>
             <Route path="/" exact component={Data}/>
             <Route path="/signin" exact component={SignIn}/>
