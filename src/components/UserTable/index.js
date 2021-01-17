@@ -1,8 +1,10 @@
 import React from 'react'
-import UserRow from '../UserRow'
-import store from '../../store/store'
-import Pagination from "../Pagination";
 import {useDispatch, useSelector} from 'react-redux';
+
+
+// Components
+import UserRow from '../UserRow'
+import Pagination from "../Pagination";
 
 export function UserTable() {
     const userList = [
@@ -73,12 +75,10 @@ export function UserTable() {
         };
     }
 
+    // TODO: Убрать, как только будет API.
     function imitationResponse(){
-        // Текущие данные на странице
         dispatch(setDataUsers(req.elements))
-        // Кол-во страниц
         dispatch(setCountPage(req.countPages))
-        // Текущая страница
         dispatch(setCurrentPage(req.currentPage))
     }
 

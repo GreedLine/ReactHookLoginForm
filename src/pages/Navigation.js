@@ -1,14 +1,11 @@
 import React from 'react'
 import {Route, Link, Switch} from 'react-router-dom'
+
+// Components
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 import AdminPanel from './AdminPanel';
 
-
-// TODO: Разобраться с тем, почему он билдит только одну страницу. И то криво.
-const Home = () => {
-
-}
 const Data = () =>(
     <nav>
         <ul>
