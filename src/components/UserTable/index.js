@@ -54,37 +54,40 @@ export function UserTable() {
      */
 
 
-    function setDataUsers(users){
-        return {
-            type: 'SET_DATA_USERS',
-            users
-        };
-    }
-
-    function setCurrentPage(currentPage){
-        return {
-            type: 'SET_CURRENT_PAGE',
-            currentPage
-        };
-    }
-
-    function setCountPage(countPages){
-        return {
-            type: 'SET_COUNT_PAGES',
-            countPages
-        };
+    function updateStore(item, type){
+        switch (type) {
+            case 'SET_DATA_USERS':
+                let users = item
+                return{
+                    type: type,
+                    users
+                }
+            case 'SET_CURRENT_PAGE':
+                let currentPage = item
+                return{
+                    type: type,
+                    currentPage
+                }
+            case 'SET_COUNT_PAGES':
+                let countPages = item
+                return{
+                    type: type,
+                    countPages
+                }
+            default:
+                throw new Error('Error on dispatch function in store. Type dispatch: ' + type);
+        }
     }
 
     // TODO: Убрать, как только будет API.
     function imitationResponse(){
-        dispatch(setDataUsers(req.elements))
-        dispatch(setCountPage(req.countPages))
-        dispatch(setCurrentPage(req.currentPage))
+        dispatch(updateStore(req.elements, 'SET_DATA_USERS'))
+        dispatch(updateStore(req.countPages, 'SET_COUNT_PAGES'))
+        dispatch(updateStore(req.currentPage, 'SET_CURRENT_PAGE'))
     }
 
     const dataUsers = useSelector(state => state.dataUsers);
     const dispatch = useDispatch();
-
 
     return (
         <div>

@@ -11,4 +11,4 @@ export default combineReducers({
     dataUsers,
     countPages,
     paginationPanel
-})
+    })

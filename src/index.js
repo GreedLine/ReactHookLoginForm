@@ -2,7 +2,6 @@ import React from 'react';
 import {render} from 'react-dom';
 import {BrowserRouter} from 'react-router-dom'
 import reportWebVitals from './reportWebVitals';
-import {createBrowserHistory} from "history";
 import {Provider} from "react-redux";
 
 // Components
@@ -16,11 +15,9 @@ import './components/UserRow/style.scss';
 import './components/Pagination/style.scss';
 import 'normalize.css';
 
-const history = createBrowserHistory();
-
 render((
     <Provider store={store}>
-        <BrowserRouter history={history}>
+        <BrowserRouter>
             <Navigation/>
         </BrowserRouter>
     </Provider>
