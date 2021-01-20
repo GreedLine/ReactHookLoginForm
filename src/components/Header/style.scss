@@ -1,0 +1,17 @@
+.header{
+  background: #686de0;
+  &__button{
+    display: flex;
+    padding: 11px 10px;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+    color: white;
+  }
+}
+

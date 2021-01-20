@@ -17,14 +17,12 @@ const Data = () =>(
 )
 
 const Navigation = () => (
-    <div>
         <Switch>
             <Route path="/" exact component={Data}/>
             <Route path="/signin" exact component={SignIn}/>
             <Route path="/signup" exact component={SignUp}/>
             <Route path="/admin/user" exact component={AdminPanel}/>
         </Switch>
-    </div>
 )
 
 export default Navigation

@@ -2,6 +2,9 @@ import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
 
 export function Pagination() {
+
+    // TODO: Переписать на useState пагинацию.
+
     const dispatch = useDispatch();
     const range = (from, to, step = 1) => {
         let i = from;

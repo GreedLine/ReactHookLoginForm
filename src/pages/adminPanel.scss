@@ -1,0 +1,14 @@
+.admin-page {
+  width: 100%;
+  min-height: 100vh;
+  &__main-container{
+    transition: margin 0.3s ease 0s;
+    &_full {
+      margin-left: 0;
+    }
+    &_withpanel {
+      margin-left: 300px;
+    }
+  }
+
+}

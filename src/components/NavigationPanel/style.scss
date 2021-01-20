@@ -1,0 +1,37 @@
+.navigation-panel{
+  position: fixed;
+ height: 100vh;
+  background: rgb(51, 46, 42);
+  color: #fafafa;
+  overflow: hidden;
+  left: -300px;
+  width: 300px;
+  transition: left 0.3s ease 0s;
+  &_active{
+    left: 0;
+  }
+  &__ul{
+    list-style-type: none;
+    padding: 0;
+  }
+  &__h1{
+    text-align: center;
+  }
+  &__li > a{
+    text-align: center;
+    background: #fff;
+    color: rgb(51, 46, 42);
+    font-weight: 600;
+    min-width: 150px;
+    display: block;
+    margin: 10px 15px;
+    padding: 5px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition:  0.3s ease 0s;
+  }
+  &__li > a:hover{
+    background: #686de0;
+    color: #fff;
+  }
+}

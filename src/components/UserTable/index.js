@@ -90,7 +90,7 @@ export function UserTable() {
     const dispatch = useDispatch();
 
     return (
-        <div>
+        <div className='admin-table-container'>
             <table className='user-list'>
                 <thead className='user-list__thead'>
                 <tr className='user-list__head'>
