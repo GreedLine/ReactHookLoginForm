@@ -1,11 +1,17 @@
-import React from 'react';
-import {useDispatch, useSelector} from "react-redux";
+import React, {useState} from 'react';
+import {useDispatch} from "react-redux";
 
-export function Pagination() {
+export function Pagination({testCurrentPage, countPages}) {
+
 
     // TODO: Переписать на useState пагинацию.
+    const [currentPage, setCurrentPage] = useState(testCurrentPage);
+    const [paginationPanel, setPaginationPanel] = useState([]);
 
-    const dispatch = useDispatch();
+    if(paginationPanel.length === 0){
+        updatePaginationPanel(currentPage)
+    }
+
     const range = (from, to, step = 1) => {
         let i = from;
         const range = [];
@@ -19,7 +25,7 @@ export function Pagination() {
     function updatePaginationPanel(item) {
         let panel = [];
         let thisCurrentPage = item;
-        if (countPages <= 5) {
+        if (countPages <= 7) {
             panel = range(1, countPages);
         } else {
             if (thisCurrentPage !== 1 && thisCurrentPage - 1 !== 1) {
@@ -38,48 +44,44 @@ export function Pagination() {
                 else panel.push(thisCurrentPage);
             }
         }
-
-        dispatch(updateStore(panel, 'SET_PAGINATION_PANEL'))
+        setPaginationPanel(panel)
     }
+    const dispatch = useDispatch();
 
-    function updateStore(item, type) {
+
+    //TODO: Переписать, как только будет API.
+    function updateCurrentPage(item) {
+        setCurrentPage(item)
+        updatePaginationPanel(item)
+        fetch('https://jsonplaceholder.typicode.com/posts')
+            .then(response => response.json())
+            .then(json => dispatch(updateStore(json, 'SET_DATA_USERS')))
+    }
+    // Ниже функция для обновления глобального стора после запроса по тыку на кнопки.
+    // dispatch(updateStore(req.elements, 'SET_DATA_USERS'))
+    function updateStore(item, type){
         switch (type) {
-            case 'SET_PAGINATION_PANEL':
-                let paginationPanel = item
-                return {
+            case 'SET_DATA_USERS':
+                let users = item
+                return{
                     type: type,
-                    paginationPanel
-                }
-            case 'SET_CURRENT_PAGE':
-                let currentPage = item
-                return {
-                    type: type,
-                    currentPage
+                    users
                 }
             default:
                 throw new Error('Error on dispatch function in store. Type dispatch: ' + type);
         }
     }
 
-
-
-    function updateCurrentPage(item) {
-        dispatch(updateStore(item, 'SET_CURRENT_PAGE'))
-        updatePaginationPanel(item)
-    }
-
-    const countPages = useSelector(state => state.countPages);
-    const currentPage = useSelector(state => state.currentPage);
-    const paginationPanel = useSelector(state => state.paginationPanel);
-
     return (
         <div className='pagination'>
             <div className='pagination__container'>
+
+                {/*TODO: Определиться, какую навигацию будем использовать. Убрать лишнюю.*/}
                 {range(1, countPages).map((item, index) =>
                     <button
                         key={index}
                         className={`pagination__button ${index + 1 === currentPage ? 'pagination__button_active' : ''}`}
-                        onClick={() => dispatch(updateStore(index + 1, 'SET_CURRENT_PAGE'))}
+                        onClick={() => setCurrentPage(index + 1)}
                     >
                         {index + 1}
                     </button>
@@ -97,9 +99,6 @@ export function Pagination() {
                     </button>
                 )}
             </div>
-            <p className='pagination__p'>
-                <button onClick={() => updatePaginationPanel(currentPage)}>Сделать так, что бы всё заработало.</button>
-            </p>
         </div>
     )
 }
