@@ -44,6 +44,7 @@ export function UserTable() {
     const dataUsers = useSelector(state => state.dataUsers);
     const dispatch = useDispatch();
 
+    //TODO: Уточнить у Дениса целеснообразность этой конструкции. По возможности заменить на что-то более адекватное.
     if(dataUsers.length === 0){
         axios.get('https://jsonplaceholder.typicode.com/users').then((resp) => {
             dispatch(updateStore(resp.data, 'SET_DATA_USERS'))
@@ -63,6 +64,7 @@ export function UserTable() {
                 </tr>
                 </thead>
                 <tbody className='user-list__tbody'>
+                //TODO: Изменить ключи в соответствии с API
                 {dataUsers.map(item =>
                     <UserRow key={item.id}
                              login={item.login}

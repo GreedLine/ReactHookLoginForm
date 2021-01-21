@@ -18,7 +18,6 @@ export  function NavigationPanel(){
             </ul>
         </div>
     )
-
 }
 
 export default NavigationPanel;
