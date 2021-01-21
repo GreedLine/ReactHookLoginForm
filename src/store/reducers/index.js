@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux'
+import {combineReducers} from 'redux'
 import dataUsers from './dataUsers'
 import navigationPanel from "./navigationPanel";
 

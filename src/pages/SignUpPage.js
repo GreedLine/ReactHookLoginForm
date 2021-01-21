@@ -8,6 +8,7 @@ function SignUpPage() {
     const {register, handleSubmit, errors, watch} = useForm({
         reValidateMode: 'onSubmit',
     });
+    //TODO: Убрать, как только будет API.
     const onSubmit = data => console.log(data);
 
     return (

@@ -6,6 +6,7 @@ import SignInPage from './SignInPage';
 import SignUpPage from './SignUpPage';
 import AdminPanelPage from './AdminPanelPage';
 
+//TODO: Написать стартовую страницу.
 const Data = () =>(
     <nav>
         <ul>
