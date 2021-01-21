@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import {useDispatch} from "react-redux";
+import axios from "axios";
+import updateStore from "../../store/updateStore";
 
 export function Pagination({testCurrentPage, countPages}) {
 
-
-    // TODO: Переписать на useState пагинацию.
     const [currentPage, setCurrentPage] = useState(testCurrentPage);
     const [paginationPanel, setPaginationPanel] = useState([]);
 
@@ -48,28 +48,14 @@ export function Pagination({testCurrentPage, countPages}) {
     }
     const dispatch = useDispatch();
 
-
     //TODO: Переписать, как только будет API.
     function updateCurrentPage(item) {
         setCurrentPage(item)
         updatePaginationPanel(item)
-        fetch('https://jsonplaceholder.typicode.com/posts')
-            .then(response => response.json())
-            .then(json => dispatch(updateStore(json, 'SET_DATA_USERS')))
-    }
-    // Ниже функция для обновления глобального стора после запроса по тыку на кнопки.
-    // dispatch(updateStore(req.elements, 'SET_DATA_USERS'))
-    function updateStore(item, type){
-        switch (type) {
-            case 'SET_DATA_USERS':
-                let users = item
-                return{
-                    type: type,
-                    users
-                }
-            default:
-                throw new Error('Error on dispatch function in store. Type dispatch: ' + type);
-        }
+
+        axios.get('https://jsonplaceholder.typicode.com/posts').then((resp) => {
+            dispatch(updateStore(resp.data, 'SET_DATA_USERS'))
+        });
     }
 
     return (

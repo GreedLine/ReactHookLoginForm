@@ -1,6 +1,7 @@
 import React from 'react'
 import {useDispatch, useSelector} from 'react-redux';
-
+import axios from 'axios'
+import updateStore from "../../store/updateStore";
 
 // Components
 import UserRow from '../UserRow'
@@ -40,30 +41,13 @@ export function UserTable() {
      */
 
 
-
-    // TODO: Вынести всё это удовольствие в один большой-большой псевдокомпонент.
-    function updateStore(item, type){
-        switch (type) {
-            case 'SET_DATA_USERS':
-                let users = item
-                return{
-                    type: type,
-                    users
-                }
-            default:
-                throw new Error('Error on dispatch function in store. Type dispatch: ' + type);
-        }
-    }
-
     const dataUsers = useSelector(state => state.dataUsers);
     const dispatch = useDispatch();
 
-    //TODO: Переписать на AJAX. Промисы это, конечно, весело, но не здесь. Или здесь.
-    //TODO: Уточнить у Дениса касательно промисов и их политической позиции касательно рендера.
     if(dataUsers.length === 0){
-        fetch('https://jsonplaceholder.typicode.com/users')
-            .then(response => response.json())
-            .then(json => dispatch(updateStore(json, 'SET_DATA_USERS')))
+        axios.get('https://jsonplaceholder.typicode.com/users').then((resp) => {
+            dispatch(updateStore(resp.data, 'SET_DATA_USERS'))
+        });
     }
 
     return (

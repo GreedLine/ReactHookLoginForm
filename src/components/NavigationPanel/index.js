@@ -4,9 +4,8 @@ import {Link} from "react-router-dom";
 
 export  function NavigationPanel(){
 
-
-    // TODO: Переписать на useState.
     const navigationPanel = useSelector(state => state.navigationPanel);
+
     return (
         <div
             className={`navigation-panel ${navigationPanel ? 'navigation-panel_active' : ''}`}

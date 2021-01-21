@@ -4,7 +4,7 @@ import React from 'react';
 // Components
 import {InputField} from "../components/InputField";
 
-function SignIn() {
+function SignInPage() {
     const {register, handleSubmit, errors} = useForm({
         reValidateMode: 'onSubmit',
     });
@@ -48,4 +48,4 @@ function SignIn() {
     );
 }
 
-export default SignIn;
+export default SignInPage;

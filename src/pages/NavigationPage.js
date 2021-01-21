@@ -2,9 +2,9 @@ import React from 'react'
 import {Route, Link, Switch} from 'react-router-dom'
 
 // Components
-import SignIn from './SignIn';
-import SignUp from './SignUp';
-import AdminPanel from './AdminPanel';
+import SignInPage from './SignInPage';
+import SignUpPage from './SignUpPage';
+import AdminPanelPage from './AdminPanelPage';
 
 const Data = () =>(
     <nav>
@@ -16,13 +16,13 @@ const Data = () =>(
     </nav>
 )
 
-const Navigation = () => (
+const NavigationPage = () => (
         <Switch>
             <Route path="/" exact component={Data}/>
-            <Route path="/signin" exact component={SignIn}/>
-            <Route path="/signup" exact component={SignUp}/>
-            <Route path="/admin/user" exact component={AdminPanel}/>
+            <Route path="/signin" exact component={SignInPage}/>
+            <Route path="/signup" exact component={SignUpPage}/>
+            <Route path="/admin/user" exact component={AdminPanelPage}/>
         </Switch>
 )
 
-export default Navigation
+export default NavigationPage

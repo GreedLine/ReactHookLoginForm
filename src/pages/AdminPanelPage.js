@@ -7,11 +7,9 @@ import NavigationPanel from "../components/NavigationPanel";
 import Header from "../components/Header";
 
 // Страница админки.
-// TODO: Изменить название страниц на более адекватное.
-export function AdminPanel() {
+export function AdminPanelPage() {
 
     const navigationPanel = useSelector(state => state.navigationPanel);
-
 
     return (
         <div className='admin-page'>
@@ -26,4 +24,4 @@ export function AdminPanel() {
     )
 }
 
-export default AdminPanel;
+export default AdminPanelPage;

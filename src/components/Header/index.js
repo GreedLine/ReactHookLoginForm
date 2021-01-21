@@ -1,19 +1,8 @@
 import {useDispatch, useSelector} from "react-redux";
 
-export function Header() {
+import updateStore from "../../store/updateStore";
 
-    function updateStore(item, type) {
-        switch (type) {
-            case 'SET_NAVIGATION_PANEL':
-                let navigationPanel = !item
-                return {
-                    type: type,
-                    navigationPanel
-                }
-            default:
-                throw new Error('Error on dispatch function in store. Type dispatch: ' + type);
-        }
-    }
+export function Header() {
 
     const navigationPanel = useSelector(state => state.navigationPanel);
     const dispatch = useDispatch();
