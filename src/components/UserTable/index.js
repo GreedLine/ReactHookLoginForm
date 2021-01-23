@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux';
 import axios from 'axios'
 import updateStore from "../../store/updateStore";
@@ -44,12 +44,11 @@ export function UserTable() {
     const dataUsers = useSelector(state => state.dataUsers);
     const dispatch = useDispatch();
 
-    //TODO: Уточнить у Дениса целеснообразность этой конструкции. По возможности заменить на что-то более адекватное.
-    if(dataUsers.length === 0){
+    useEffect(()=>{
         axios.get('https://jsonplaceholder.typicode.com/users').then((resp) => {
             dispatch(updateStore(resp.data, 'SET_DATA_USERS'))
         });
-    }
+    },[])
 
     return (
         <div className='admin-table-container'>
@@ -64,7 +63,7 @@ export function UserTable() {
                 </tr>
                 </thead>
                 <tbody className='user-list__tbody'>
-                //TODO: Изменить ключи в соответствии с API
+                {/*//TODO: Изменить ключи в соответствии с API*/}
                 {dataUsers.map(item =>
                     <UserRow key={item.id}
                              login={item.login}
